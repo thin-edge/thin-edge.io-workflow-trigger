@@ -1,4 +1,6 @@
 name: Run periodic tasks
+permissions:
+  contents: read
 
 on:
   schedule:
