@@ -1,0 +1,17 @@
+name: Run periodic tasks
+
+on:
+  schedule:
+    - cron: '20 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  tedge-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger thin-edge.io tests
+        env:
+          GH_TOKEN: ${{ secrets.ACTIONS_PAT }}
+        run: |
+          gh workflow run build-workflow.yml \
+            --repo reubenmiller/thin-edge.io
