@@ -4,7 +4,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '20 4 * * *'
+    - cron: '0 23 * * *'
   workflow_dispatch:
 
 jobs:
@@ -16,4 +16,6 @@ jobs:
           GH_TOKEN: ${{ secrets.ACTIONS_PAT }}
         run: |
           gh workflow run build-workflow.yml \
-            --repo reubenmiller/thin-edge.io
+            --repo reubenmiller/thin-edge.io \
+            --raw-field retries=2 \
+            --ref ci-configurable-system-test-retries
